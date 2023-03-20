@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JewelleryStore.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JewelleryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class JewelTypeController : ControllerBase
     {
         private readonly MyDbContext _context;
