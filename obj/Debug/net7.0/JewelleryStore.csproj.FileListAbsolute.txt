@@ -326,3 +326,9 @@
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/JWT.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/BCrypt.Net-Next.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.Extensions.Options.dll

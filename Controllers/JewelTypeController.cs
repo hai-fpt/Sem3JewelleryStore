@@ -33,21 +33,18 @@ namespace JewelleryStore.Controllers
 
         // GET: api/JewelType/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<JewelTypeMst>> GetJewelTypeMst(string id)
+        public IActionResult GetJewelTypeMst(string id)
         {
-          if (_context.JewelTypeMsts == null)
-          {
-              return NotFound();
-          }
-            var jewelTypeMst = await _context.JewelTypeMsts.FindAsync(id);
+            var jewelType = _context.JewelTypeMsts.Include(j => j.Item).FirstOrDefault(j => j.Id == id);
 
-            if (jewelTypeMst == null)
+            if (jewelType == null)
             {
                 return NotFound();
             }
 
-            return jewelTypeMst;
+            return Ok(jewelType);
         }
+
 
         // PUT: api/JewelType/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -83,31 +80,60 @@ namespace JewelleryStore.Controllers
         // POST: api/JewelType
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<JewelTypeMst>> PostJewelTypeMst(JewelTypeMst jewelTypeMst)
+        public IActionResult CreateJewelType([FromBody] JewelTypeMst jewelType)
         {
-          if (_context.JewelTypeMsts == null)
-          {
-              return Problem("Entity set 'MyDbContext.JewelTypeMsts'  is null.");
-          }
-            _context.JewelTypeMsts.Add(jewelTypeMst);
-            try
+            var item = _context.ItemMsts.FirstOrDefault(i => i.StyleCode == jewelType.ItemId);
+            if (item == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (JewelTypeMstExists(jewelTypeMst.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest("Item does not exists");
             }
 
-            return CreatedAtAction("GetJewelTypeMst", new { id = jewelTypeMst.Id }, jewelTypeMst);
+            var newJewelType = new JewelTypeMst
+            {
+                Id = jewelType.Id,
+                JewelleryType = jewelType.JewelleryType,
+                ImgPath = jewelType.ImgPath,
+                ItemId = jewelType.ItemId,
+                Item = item
+            };
+
+            _context.JewelTypeMsts.Add(newJewelType);
+            _context.SaveChanges();
+
+            return Ok("New jewel created successfully");
         }
+        //public async Task<ActionResult<JewelTypeMst>> PostJewelTypeMst(JewelTypeMst jewelTypeMst, string itemId)
+        //{
+        //    if (_context.JewelTypeMsts == null)
+        //    {
+        //        return Problem("Entity set 'MyDbContext.JewelTypeMsts'  is null.");
+        //    }
+        //    var item = await _context.ItemMsts.FindAsync(itemId);
+        //    if (item == null)
+        //    {
+        //        return NotFound($"Item with ID {itemId} not found");
+        //    }
+        //    jewelTypeMst.Item = item;
+            
+        //    _context.JewelTypeMsts.Add(jewelTypeMst);
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (JewelTypeMstExists(jewelTypeMst.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return CreatedAtAction("GetJewelTypeMst", new { id = jewelTypeMst.Id }, jewelTypeMst);
+        //}
 
         // DELETE: api/JewelType/5
         [HttpDelete("{id}")]
