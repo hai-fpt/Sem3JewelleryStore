@@ -27,5 +27,7 @@ public partial class UserRegMst
 
     public string Password { get; set; }
 
+    public string Username { get; set; }
+
     public virtual ICollection<Inquiry> Inquiries { get; } = new List<Inquiry>();
 }

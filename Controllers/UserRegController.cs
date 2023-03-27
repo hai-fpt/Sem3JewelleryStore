@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JewelleryStore.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace JewelleryStore.Controllers
 {
@@ -13,12 +17,15 @@ namespace JewelleryStore.Controllers
     [ApiController]
     public class UserRegController : ControllerBase
     {
+        private readonly IConfiguration _config;
         private readonly MyDbContext _context;
 
-        public UserRegController(MyDbContext context)
+        public UserRegController(IConfiguration config, MyDbContext context)
         {
+            _config = config;
             _context = context;
         }
+        
 
         // GET: api/UserReg
         [HttpGet]
@@ -89,6 +96,8 @@ namespace JewelleryStore.Controllers
           {
               return Problem("Entity set 'MyDbContext.UserRegMsts'  is null.");
           }
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(userRegMst.Password);
+            userRegMst.Password = hashedPassword;
             _context.UserRegMsts.Add(userRegMst);
             try
             {
@@ -108,6 +117,8 @@ namespace JewelleryStore.Controllers
 
             return CreatedAtAction("GetUserRegMst", new { id = userRegMst.UserId }, userRegMst);
         }
+
+       
 
         // DELETE: api/UserReg/5
         [HttpDelete("{id}")]

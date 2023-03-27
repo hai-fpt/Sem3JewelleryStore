@@ -325,3 +325,4 @@
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/JWT.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/BCrypt.Net-Next.dll

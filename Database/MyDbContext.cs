@@ -70,7 +70,7 @@ public partial class MyDbContext : DbContext
                 .HasColumnName("userName");
             entity.Property(e => e.Password)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(256);
         });
 
         modelBuilder.Entity<BrandMst>(entity =>
@@ -609,6 +609,8 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("UserRegMst");
 
+            entity.HasIndex(e => e.Username, "username").IsUnique();
+
             entity.Property(e => e.UserId)
                 .HasMaxLength(10)
                 .IsFixedLength()
@@ -646,7 +648,7 @@ public partial class MyDbContext : DbContext
                 .HasColumnName("mobNo");
             entity.Property(e => e.Password)
                 .IsRequired()
-                .HasMaxLength(50)
+                .HasMaxLength(256)
                 .HasColumnName("password");
             entity.Property(e => e.State)
                 .HasMaxLength(50)
@@ -661,6 +663,10 @@ public partial class MyDbContext : DbContext
                 .IsRequired()
                 .HasColumnType("text")
                 .HasColumnName("userLname");
+            entity.Property(e => e.Username)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnName("username");
         });
 
         OnModelCreatingPartial(modelBuilder);
