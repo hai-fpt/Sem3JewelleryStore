@@ -12,7 +12,6 @@ const Item = (props) => {
   const imgPath = `../assets/img/${id}.jpg`;
   const navigate = useNavigate();
   const handleNavigation = () => navigate(`/item/${id}`);
-  "203 177 124"
 
   return (
     <Card className='animate__animated animate__fadeIn' raised style={{backgroundColor: "rgb(203, 177, 124)"}}>

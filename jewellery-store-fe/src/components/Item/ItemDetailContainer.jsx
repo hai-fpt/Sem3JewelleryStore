@@ -11,14 +11,9 @@ const ItemDetailContainer = () => {
   const { itemId } = useParams();
 
   useEffect(async () => {
-    try {
-      const docRef = doc(db, 'items', itemId);
-      const docItem = await getDoc(docRef);
-
-      setItem({ id: docItem.id, ...docItem.data() });
-    } catch (err) {
-      console.error(err);
-    }
+   fetch("https://localhost:7211/api/JewelType/" + itemId)
+       .then(res => res.json())
+       .then(res => setItem(res));
   }, [itemId]);
 
   return item ? <ItemDetail {...item} /> : <LoadingSpinner />;

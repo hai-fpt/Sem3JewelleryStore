@@ -8,7 +8,7 @@ const GoBackBtn = () => {
 
   return (
     <Button startIcon={<ArrowBackIcon />} onClick={handleReturn}>
-      Volver
+      Back
     </Button>
   );
 };

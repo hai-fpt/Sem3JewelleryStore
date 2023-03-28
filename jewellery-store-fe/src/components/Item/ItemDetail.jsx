@@ -17,7 +17,12 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 
-const ItemDetail = ({ id, title, description, price, stock }) => {
+const ItemDetail = (props) => {
+  const id = props.id;
+  const title = props.jewelleryType;
+  const price = props.item.mrp;
+  const stock = props.item.quantity;
+  const description = "Brand: " + props.item.brandId;
   const { addItemToCart, isInCart } = useContext(CartContext);
   const [showSuccessBar, setShowSuccessBar] = useState(false);
   const imgPath = `/assets/img/${id}.jpg`;
@@ -78,20 +83,20 @@ const ItemDetail = ({ id, title, description, price, stock }) => {
                 component={Link}
                 to='/cart'
               >
-                Terminar mi compra
+                Go to cart
               </Button>
             ) : stock > 0 ? (
               <ItemCount stock={stock} onAdd={handleAddItemToCart} />
             ) : (
-              <Typography variant='h6' color='textSecondary'>
-                Sin stock
+              <Typography variant='h6' color='black'>
+                Out of stock
               </Typography>
             )}
           </Box>
         </Grid>
       </Grid>
       {showSuccessBar && (
-        <SuccessSnackbar message={'Producto agregado al carrito'} />
+        <SuccessSnackbar message={'Product added to cart'} />
       )}
     </>
   );

@@ -34,9 +34,10 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
         >
           <OutlinedInput
             id='outlined-adornment-weight'
-            endAdornment={<InputAdornment position='end'>Un</InputAdornment>}
+            // endAdornment={<InputAdornment position='end'>A</InputAdornment>}
             aria-describedby='outlined-weight-helper-text'
             type='number'
+            style={{color: "black", border: "black"}}
             inputProps={{
               'aria-label': 'weight',
               type: 'number',
@@ -46,15 +47,16 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
               disabled: true,
             }}
           />
-          <FormHelperText id='outlined-weight-helper-text'>
-            {stock < 1 ? 'Sin stock' : `En stock: ${stock}`}
+          <FormHelperText id='outlined-weight-helper-text' style={{color: "black"}}>
+            {stock < 1 ? 'Out of stock' : `Available stock: ${stock}`}
           </FormHelperText>
         </FormControl>
-        <Stack direction={{ xs: 'row-reverse', sm: 'column' }}>
+        <Stack direction={{ xs: 'row-reverse', sm: 'column' }} style={{color: "black"}}>
           <IconButton
             aria-label='addButton'
             disabled={stock < 1 || (counter === stock && true)}
             onClick={increment}
+            style={{color: "black"}}
           >
             <AddIcon />
           </IconButton>
@@ -62,6 +64,7 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
             aria-label='removeButtom'
             disabled={counter < 1 || (stock < 1 && true)}
             onClick={decrement}
+            style={{color: "black"}}
           >
             <RemoveIcon />
           </IconButton>
@@ -77,7 +80,7 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
         onClick={handleAddBtnClick}
         disabled={stock < 1 || (counter < 1 && true)}
       >
-        Agregar
+        Add to cart
       </Button>
     </Box>
   );

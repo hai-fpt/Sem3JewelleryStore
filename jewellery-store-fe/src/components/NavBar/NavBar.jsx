@@ -12,7 +12,7 @@ import MenuNavList from './MenuNavList';
 import ThemeContext from '../../context/ThemeContext';
 
 const NavBar = () => {
-  const pages = ['Desktops', 'Notebooks', 'Gadgets'];
+  const pages = ['Necklaces', 'Rings', 'Earrings'];
 
   return (
     <ThemeContext>

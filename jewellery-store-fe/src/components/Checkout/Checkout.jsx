@@ -85,7 +85,7 @@ const Checkout = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                      Volver
+                      Back
                     </Button>
                   )}
 
@@ -95,7 +95,7 @@ const Checkout = () => {
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1
-                      ? 'Terminar mi compra'
+                      ? 'Finish purchase'
                       : 'Siguiente'}
                   </Button>
                 </Box>

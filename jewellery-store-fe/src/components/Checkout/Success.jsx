@@ -32,7 +32,7 @@ const Success = ({ orderId }) => {
         to='/'
         sx={{ mt: 3, mx: 'auto', display: 'block', textAlign: 'center' }}
       >
-        Volver al inicio
+        Back to top
       </Button>
     </>
   );

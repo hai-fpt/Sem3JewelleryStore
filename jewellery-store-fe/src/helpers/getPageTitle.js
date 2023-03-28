@@ -4,14 +4,14 @@ const getPageTitle = () => {
   const { categoryId } = useParams();
 
   switch (categoryId) {
-    case 'desktops':
-      return 'Nuestras desktops';
-    case 'notebooks':
-      return 'Nuestras notebooks';
-    case 'gadgets':
-      return 'Nuestros gadgets';
+    case 'necklaces':
+      return 'Necklaces';
+    case 'rings':
+      return 'Rings';
+    case 'earrings':
+      return 'Earrings';
     default:
-      return 'Todos nuestros productos';
+      return 'All items';
   }
 };
 

@@ -45,7 +45,7 @@ const ItemListCointainer = () => {
   console.log(items)
 
   return loading ? (
-    <LoadingSpinner text='Cargando productos...' />
+    <LoadingSpinner text='Loading products...' />
   ) : (
     <ItemList items={items} />
   );

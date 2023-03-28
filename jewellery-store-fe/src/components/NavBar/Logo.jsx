@@ -7,6 +7,7 @@ const Logo = () => (
   <Avatar
     component={Link}
     to='/'
+    sx={{marginRight: 14}}
     src='../assets/img/jewellery-logo.png'
     alt='JewelleryLogo'
     loading='lazy'
