@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
+var policyName = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 
@@ -17,6 +18,20 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 }
 );
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: policyName,
+        builder =>
+        {
+            builder
+                .WithOrigins("http://localhost:3000")
+                .WithMethods("GET")
+                .WithMethods("POST")
+                .WithMethods("PUT")
+                .WithMethods("DELETE")
+                .AllowAnyHeader();
+        });
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -52,6 +67,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(policyName);
 
 app.UseHttpsRedirection();
 

@@ -16,7 +16,7 @@ const NavBar = () => {
 
   return (
     <ThemeContext>
-      <AppBar position='static' sx={{ bgcolor: '#91002e' }}>
+      <AppBar position='static' sx={{ bgcolor: '#000' }}>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
             <Logo />

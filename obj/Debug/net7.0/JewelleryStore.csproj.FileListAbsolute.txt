@@ -332,3 +332,10 @@
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/jewellery-store-fe/package-lock.json
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/jewellery-store-fe/package.json
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/System.Web.Cors.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/System.Net.Http.Formatting.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/System.Web.Http.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/System.Web.Http.Cors.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll

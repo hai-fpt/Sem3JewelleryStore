@@ -6,13 +6,16 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
-const Item = ({ id, title, price }) => {
+
+const Item = (props) => {
+  const id = props.id;
   const imgPath = `../assets/img/${id}.jpg`;
   const navigate = useNavigate();
   const handleNavigation = () => navigate(`/item/${id}`);
+  "203 177 124"
 
   return (
-    <Card className='animate__animated animate__fadeIn' raised>
+    <Card className='animate__animated animate__fadeIn' raised style={{backgroundColor: "rgb(203, 177, 124)"}}>
       <CardActionArea>
         <CardMedia
           component='img'
@@ -23,16 +26,16 @@ const Item = ({ id, title, price }) => {
         />
         <CardContent>
           <Typography variant='body2' color='text.secondary' noWrap>
-            {title}
+            {props.jewelleryType.charAt(0).toUpperCase() + props.jewelleryType.slice(1)} {id}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: 'flex', justifyContent: 'space-around' }}>
-        <Button size='small' color='error' onClick={handleNavigation}>
-          Ver más
+        <Button size='small' sx={{color: "white", "&:hover": {backgroundColor: "rgb(203,203,124)"}}} onClick={handleNavigation}>
+          Details
         </Button>
         <Typography variant='subtitle2' color='text.secondary' align='right'>
-          {`$${price}`}
+          {`$${props.item.mrp}`}
         </Typography>
       </CardActions>
     </Card>

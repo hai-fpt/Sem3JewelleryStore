@@ -7,11 +7,9 @@ const Logo = () => (
   <Avatar
     component={Link}
     to='/'
-    sx={{ marginRight: 3, height: 64 }}
-    src='../assets/img/lanus-logo.svg'
-    alt='LanusLogo'
+    src='../assets/img/jewellery-logo.png'
+    alt='JewelleryLogo'
     loading='lazy'
-    variant='rounded'
   />
 );
 

@@ -24,6 +24,8 @@ namespace JewelleryStore.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JewelTypeMst>>> GetJewelTypeMsts()
         {
+            var jewelTypeMsts = await _context.JewelTypeMsts.Include(j => j.Item).ToListAsync();
+            
           if (_context.JewelTypeMsts == null)
           {
               return NotFound();

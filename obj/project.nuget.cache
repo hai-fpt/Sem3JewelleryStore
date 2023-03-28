@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1t/GO4NmjQaBFKzSWw3AafXAgGDbKrPu13BpbPFI3IHEbrunYYmt1UMSww03ME7EcHM3bgdvBO81PGc3Hk0YKA==",
+  "dgSpecHash": "jLQqVXFyIH18QPfMyx7wfAuNacwHu/pkzox1vojRdeEBnNBBaJDV7Tt1qNFi0WgWJmyRM1829HAqpo3Bcg6SNA==",
   "success": true,
   "projectFilePath": "/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/JewelleryStore.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,10 @@
     "/Users/mz01-hainvh/.nuget/packages/k4os.compression.lz4/1.2.6/k4os.compression.lz4.1.2.6.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/k4os.compression.lz4.streams/1.2.6/k4os.compression.lz4.streams.1.2.6.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/k4os.hash.xxhash/1.0.6/k4os.hash.xxhash.1.0.6.nupkg.sha512",
+    "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnet.cors/5.2.9/microsoft.aspnet.cors.5.2.9.nupkg.sha512",
+    "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnet.webapi.client/5.2.9/microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
+    "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnet.webapi.core/5.2.9/microsoft.aspnet.webapi.core.5.2.9.nupkg.sha512",
+    "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnet.webapi.cors/5.2.9/microsoft.aspnet.webapi.cors.5.2.9.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/microsoft.aspnetcore.authentication.cookies/2.2.0/microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
@@ -114,6 +118,7 @@
     "/Users/mz01-hainvh/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/newtonsoft.json/13.0.2/newtonsoft.json.13.0.2.nupkg.sha512",
+    "/Users/mz01-hainvh/.nuget/packages/newtonsoft.json.bson/1.0.1/newtonsoft.json.bson.1.0.1.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/nuget.common/6.3.1/nuget.common.6.3.1.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/nuget.configuration/6.3.1/nuget.configuration.6.3.1.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/nuget.dependencyresolver.core/6.3.1/nuget.dependencyresolver.core.6.3.1.nupkg.sha512",
@@ -243,5 +248,36 @@
     "/Users/mz01-hainvh/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/Users/mz01-hainvh/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Cors 5.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Cors",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Cors 5.2.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Cors",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }
