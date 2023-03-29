@@ -7,9 +7,9 @@ public partial class CartList
 {
     public string Id { get; set; }
 
-    public string ProductName { get; set; }
+    public string Title { get; set; }
 
-    public decimal Mrp { get; set; }
+    public string Quantity { get; set; }
 
-    public virtual ICollection<JewelTypeMst> Jewels { get; } = new List<JewelTypeMst>();
+    public decimal Price { get; set; }
 }

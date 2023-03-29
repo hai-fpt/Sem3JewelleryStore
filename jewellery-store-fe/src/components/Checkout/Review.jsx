@@ -26,14 +26,14 @@ const Review = () => {
   return (
     <>
       <Typography variant='h6' gutterBottom>
-        Resumen de compra
+        Purchase Summary
       </Typography>
       <List disablePadding>
         {cart.map((item) => (
           <ListItem key={item.title} sx={{ py: 1, px: 0 }}>
             <ListItemText
               primary={item.title}
-              secondary={`Cantidad: ${item.quantity}`}
+              secondary={`Amount: ${item.quantity}`}
             />
             <Typography variant='body2'>
               {item.price * item.quantity}
@@ -51,7 +51,7 @@ const Review = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-            Envío
+            Shipping
           </Typography>
           <Typography gutterBottom>{name + ' ' + lastName}</Typography>
           <Typography gutterBottom>
@@ -60,17 +60,17 @@ const Review = () => {
         </Grid>
         <Grid item container direction='column' xs={12} sm={6}>
           <Typography variant='h6' gutterBottom sx={{ mt: 2 }}>
-            Pago
+            Payment Details
           </Typography>
           <Grid container>
             <Grid item xs={6}>
-              <Typography gutterBottom>Titular tarjeta</Typography>
+              <Typography gutterBottom>Card holder</Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography gutterBottom>{cardName}</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography gutterBottom>Número tarjeta</Typography>
+              <Typography gutterBottom>Card number</Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography gutterBottom>{`xxxx-xxxx-xxxx-${cardNumber?.slice(
@@ -78,7 +78,7 @@ const Review = () => {
               )}`}</Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography gutterBottom>Vencimiento</Typography>
+              <Typography gutterBottom>Expiration date</Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography gutterBottom>{cardExpDate}</Typography>

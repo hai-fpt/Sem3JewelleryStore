@@ -25,6 +25,8 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<CertifyMst> CertifyMsts { get; set; }
 
+    public virtual DbSet<CreditCard> CreditCards { get; set; }
+
     public virtual DbSet<DimInfoMst> DimInfoMsts { get; set; }
 
     public virtual DbSet<DimMst> DimMsts { get; set; }
@@ -34,6 +36,8 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<DimQltySubMst> DimQltySubMsts { get; set; }
 
     public virtual DbSet<GoldKrtMst> GoldKrtMsts { get; set; }
+
+    public virtual DbSet<Income> Incomes { get; set; }
 
     public virtual DbSet<Inquiry> Inquiries { get; set; }
 
@@ -100,48 +104,20 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.Id)
                 .HasMaxLength(10)
                 .IsFixedLength()
-                .HasColumnName("ID")
+                .HasColumnName("id")
                 .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
-            entity.Property(e => e.Mrp)
+            entity.Property(e => e.Price)
                 .HasPrecision(10, 2)
-                .HasColumnName("MRP");
-            entity.Property(e => e.ProductName)
+                .HasColumnName("price");
+            entity.Property(e => e.Quantity)
                 .IsRequired()
                 .HasMaxLength(50)
-                .HasColumnName("Product_Name");
-
-            entity.HasMany(d => d.Jewels).WithMany(p => p.Carts)
-                .UsingEntity<Dictionary<string, object>>(
-                    "CartJewel",
-                    r => r.HasOne<JewelTypeMst>().WithMany()
-                        .HasForeignKey("JewelId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("cartjewel_ibfk_2"),
-                    l => l.HasOne<CartList>().WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("cartjewel_ibfk_1"),
-                    j =>
-                    {
-                        j.HasKey("CartId", "JewelId")
-                            .HasName("PRIMARY")
-                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
-                        j.ToTable("CartJewel");
-                        j.HasIndex(new[] { "JewelId" }, "Jewel_ID");
-                        j.IndexerProperty<string>("CartId")
-                            .HasMaxLength(10)
-                            .IsFixedLength()
-                            .HasColumnName("Cart_ID")
-                            .UseCollation("utf8mb3_general_ci")
-                            .HasCharSet("utf8mb3");
-                        j.IndexerProperty<string>("JewelId")
-                            .HasMaxLength(10)
-                            .IsFixedLength()
-                            .HasColumnName("Jewel_ID")
-                            .UseCollation("utf8mb3_general_ci")
-                            .HasCharSet("utf8mb3");
-                    });
+                .HasColumnName("quantity");
+            entity.Property(e => e.Title)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnName("title");
         });
 
         modelBuilder.Entity<CatMst>(entity =>
@@ -178,6 +154,32 @@ public partial class MyDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Certify_Type");
+        });
+
+        modelBuilder.Entity<CreditCard>(entity =>
+        {
+            entity.HasKey(e => e.CardNumber).HasName("PRIMARY");
+
+            entity.ToTable("CreditCard");
+
+            entity.Property(e => e.CardNumber)
+                .HasMaxLength(16)
+                .HasColumnName("Card_Number");
+            entity.Property(e => e.CardCvv)
+                .IsRequired()
+                .HasMaxLength(10)
+                .HasColumnName("Card_CVV");
+            entity.Property(e => e.CardExpiration)
+                .IsRequired()
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .HasColumnName("Card_Expiration")
+                .UseCollation("utf8mb3_general_ci")
+                .HasCharSet("utf8mb3");
+            entity.Property(e => e.CardName)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnName("Card_Name");
         });
 
         modelBuilder.Entity<DimInfoMst>(entity =>
@@ -333,6 +335,31 @@ public partial class MyDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Gold_Crt");
+        });
+
+        modelBuilder.Entity<Income>(entity =>
+        {
+            entity.HasKey(e => e.CustomerName).HasName("PRIMARY");
+
+            entity.ToTable("Income");
+
+            entity.HasIndex(e => e.CustomerCard, "Customer_Card");
+
+            entity.Property(e => e.CustomerName)
+                .HasMaxLength(50)
+                .HasColumnName("Customer_Name");
+            entity.Property(e => e.Amount)
+                .IsRequired()
+                .HasMaxLength(50);
+            entity.Property(e => e.CustomerCard)
+                .IsRequired()
+                .HasMaxLength(16)
+                .HasColumnName("Customer_Card");
+
+            entity.HasOne(d => d.CustomerCardNavigation).WithMany(p => p.Incomes)
+                .HasForeignKey(d => d.CustomerCard)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("income_ibfk_1");
         });
 
         modelBuilder.Entity<Inquiry>(entity =>
@@ -618,11 +645,9 @@ public partial class MyDbContext : DbContext
                 .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.Address)
-                .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("address");
             entity.Property(e => e.Cdate)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("cdate")
                 .UseCollation("utf8mb3_general_ci")
@@ -633,21 +658,17 @@ public partial class MyDbContext : DbContext
                 .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.Dob)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("dob")
                 .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.EmailId)
-                .IsRequired()
                 .HasColumnType("text")
                 .HasColumnName("emailID");
             entity.Property(e => e.MobNo)
-                .IsRequired()
                 .HasColumnType("text")
                 .HasColumnName("mobNo");
             entity.Property(e => e.Password)
-                .IsRequired()
                 .HasMaxLength(256)
                 .HasColumnName("password");
             entity.Property(e => e.State)
@@ -656,15 +677,12 @@ public partial class MyDbContext : DbContext
                 .UseCollation("utf8mb3_general_ci")
                 .HasCharSet("utf8mb3");
             entity.Property(e => e.UserFname)
-                .IsRequired()
                 .HasColumnType("text")
                 .HasColumnName("userFname");
             entity.Property(e => e.UserLname)
-                .IsRequired()
                 .HasColumnType("text")
                 .HasColumnName("userLname");
             entity.Property(e => e.Username)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("username");
         });

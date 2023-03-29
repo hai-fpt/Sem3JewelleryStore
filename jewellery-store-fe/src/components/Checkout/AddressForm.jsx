@@ -11,14 +11,14 @@ const AddressForm = () => {
   return (
     <>
       <Typography variant='h6' gutterBottom>
-        Datos de envío
+        Shipping information
       </Typography>
       <Grid container spacing={3} className='animate__animated animate__fadeIn'>
         <Grid item xs={12} sm={6}>
           <TextField
             id='name'
             name='name'
-            label='Nombre'
+            label='First Name'
             fullWidth
             variant='standard'
             value={userData.name}
@@ -32,7 +32,7 @@ const AddressForm = () => {
           <TextField
             id='lastName'
             name='lastName'
-            label='Apellido'
+            label='Last Name'
             fullWidth
             variant='standard'
             value={userData.lastName}
@@ -61,7 +61,7 @@ const AddressForm = () => {
           <TextField
             id='address'
             name='address'
-            label='Dirección'
+            label='Address'
             fullWidth
             variant='standard'
             value={userData.address}
@@ -75,7 +75,7 @@ const AddressForm = () => {
           <TextField
             id='city'
             name='city'
-            label='Ciudad'
+            label='City'
             fullWidth
             variant='standard'
             value={userData.city}
@@ -89,7 +89,7 @@ const AddressForm = () => {
           <TextField
             id='state'
             name='state'
-            label='Estado/Provincia/Region'
+            label='State/Province/Region'
             fullWidth
             variant='standard'
             value={userData.state}
@@ -104,7 +104,7 @@ const AddressForm = () => {
             type='number'
             id='zip'
             name='zip'
-            label='Código postal'
+            label='ZIP Number'
             fullWidth
             variant='standard'
             value={userData.zip}
@@ -119,7 +119,7 @@ const AddressForm = () => {
             type='number'
             id='phoneNumber'
             name='phoneNumber'
-            label='Número de teléfono'
+            label='Phone Number'
             fullWidth
             variant='standard'
             value={userData.phoneNumber}

@@ -19,7 +19,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const steps = ['Dirección de envío', 'Detalles del pago', 'Chequeo de datos'];
+const steps = ['Shipping address', 'Payment detail', 'Data verification'];
 
 const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -96,7 +96,7 @@ const Checkout = () => {
                   >
                     {activeStep === steps.length - 1
                       ? 'Finish purchase'
-                      : 'Siguiente'}
+                      : 'Continue'}
                   </Button>
                 </Box>
               </>
