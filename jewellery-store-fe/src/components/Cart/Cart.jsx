@@ -20,7 +20,7 @@ const Cart = () => {
 
   return (
     <>
-      <h2>{`Mi carrito (${amountOfItemsInCart()})`}</h2>
+      <h2>{`My Cart (${amountOfItemsInCart()})`}</h2>
       <hr />
       <br />
       {cart.length > 0 ? (
@@ -50,7 +50,7 @@ const Cart = () => {
               to='/checkout'
               startIcon={<PointOfSaleIcon />}
             >
-              Proceder al pago
+              Proceed to payment
             </Button>
           </Box>
 

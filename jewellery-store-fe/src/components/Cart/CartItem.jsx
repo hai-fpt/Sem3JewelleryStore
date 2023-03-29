@@ -48,7 +48,7 @@ const CartItem = ({ id, title, price, quantity, removeItemFromCart }) => {
           alignContent='center'
         >
           <Box>
-            <FormHelperText>Precio unitario</FormHelperText>
+            <FormHelperText sx={{color: "black"}}>Price</FormHelperText>
             <Typography variant='inherit'>{'$' + price}</Typography>
           </Box>
         </Grid>
@@ -63,7 +63,7 @@ const CartItem = ({ id, title, price, quantity, removeItemFromCart }) => {
           justifyContent='center'
           alignContent='center'
         >
-          <FormHelperText>Cantidad </FormHelperText>
+          <FormHelperText sx={{color: "black"}}>Amount </FormHelperText>
           <Typography variant='inherit'>{quantity}</Typography>
         </Grid>
 
@@ -77,7 +77,7 @@ const CartItem = ({ id, title, price, quantity, removeItemFromCart }) => {
           justifyContent='center'
           alignContent='center'
         >
-          <FormHelperText>Subtotal </FormHelperText>
+          <FormHelperText sx={{color: "black"}}>Total Price </FormHelperText>
           <Typography variant='inherit'>
             {'$' + (price * quantity).toFixed(2)}
           </Typography>
@@ -93,8 +93,8 @@ const CartItem = ({ id, title, price, quantity, removeItemFromCart }) => {
           justifyContent='center'
           alignContent='center'
         >
-          <Tooltip title='Eliminar' placement='top'>
-            <IconButton onClick={handleRemoveItem}>
+          <Tooltip title='Delete' placement='top'>
+            <IconButton sx={{color: "red"}} onClick={handleRemoveItem}>
               <DeleteIcon />
             </IconButton>
           </Tooltip>

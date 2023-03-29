@@ -4,7 +4,7 @@ import GoBackBtn from '../ui/GoBackBtn';
 const EmptyCart = () => (
   <>
     <Typography variant='h5' align='center' sx={{ my: 5 }}>
-      No hay productos en el carrito
+      There are no products in the cart
     </Typography>
     <GoBackBtn />
   </>
