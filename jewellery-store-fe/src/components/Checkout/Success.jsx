@@ -11,7 +11,7 @@ const Success = ({ orderId }) => {
         justifyContent='center'
         className='animate__animated animate__pulse'
       >
-        <img src='/assets/img/lanus-logo.svg' alt='success' width={200} />
+        <img src='/assets/img/jewellery-logo.png' alt='success' width={200} />
       </Box>
       <Typography variant='h5' align='center' gutterBottom>
         Muchas gracias por tu compra!

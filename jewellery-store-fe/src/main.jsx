@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LanusTechApp from './LanusTechApp';
+import JewelleryStoreApp from './JewelleryStoreApp';
 
-ReactDOM.render(<LanusTechApp />, document.getElementById('root'));
+ReactDOM.render(<JewelleryStoreApp />, document.getElementById('root'));

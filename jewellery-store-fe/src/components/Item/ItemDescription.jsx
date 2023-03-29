@@ -5,21 +5,25 @@ import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
-const ItemDescription = ({ characteristics }) => (
-  <Paper elevation={8} sx={{ my: 3 }}>
-    <List>
-      {Object.entries(characteristics).map(([key, value]) => (
-        <Fragment key={key}>
-          <ListItem>
-            <Typography variant='caption' component='p'>
-              <strong>{key}:</strong> {value.toLowerCase()}
-            </Typography>
-          </ListItem>
-          <Divider variant={'middle'} />
-        </Fragment>
-      ))}
-    </List>
-  </Paper>
-);
+const ItemDescription = (props) => {
+    const item = props.characteristics.item;
+
+    return (
+        <Paper elevation={8} sx={{ my: 3, backgroundColor: "beige", color: "black" }}>
+            <List>
+                <ListItem>
+                    <Typography variant="caption">
+                        <p>Id: {item.styleCode}</p>
+                        <p>Brand: {item.brand.brandType}</p>
+                        <p>Category: {item.cat.catName}</p>
+                        <p>Certificate: {item.certify.certifyType}</p>
+                        <p>Gold Type: {item.goldType.goldCrt}</p>
+                        <p>Gold Rate: {item.goldRate}</p>
+                    </Typography>
+                </ListItem>
+            </List>
+        </Paper>
+    );
+}
 
 export default ItemDescription;

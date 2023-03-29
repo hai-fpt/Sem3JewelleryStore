@@ -5,7 +5,7 @@ import { UserProvider } from '../src/context/UserContext';
 
 import './App.css';
 
-const LanusTechApp = () => (
+const JewelleryStoreApp = () => (
   <div className='App'>
     <UserProvider>
       <CartProvider>
@@ -17,4 +17,4 @@ const LanusTechApp = () => (
   </div>
 );
 
-export default LanusTechApp;
+export default JewelleryStoreApp;

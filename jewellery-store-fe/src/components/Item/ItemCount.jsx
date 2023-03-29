@@ -37,7 +37,11 @@ const ItemCount = ({ stock = 0, initial = 1, onAdd }) => {
             // endAdornment={<InputAdornment position='end'>A</InputAdornment>}
             aria-describedby='outlined-weight-helper-text'
             type='number'
-            style={{color: "black", border: "black"}}
+            sx={{
+                color: "black",
+                border: "1px solid black",
+                borderRadius: 1
+            }}
             inputProps={{
               'aria-label': 'weight',
               type: 'number',

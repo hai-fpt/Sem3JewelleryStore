@@ -37,7 +37,19 @@ namespace JewelleryStore.Controllers
         [HttpGet("{id}")]
         public IActionResult GetJewelTypeMst(string id)
         {
-            var jewelType = _context.JewelTypeMsts.Include(j => j.Item).FirstOrDefault(j => j.Id == id);
+            //var jewelType = _context.JewelTypeMsts.Include(j => j.Item).FirstOrDefault(j => j.Id == id);
+            var jewelType = _context.JewelTypeMsts
+                .Include(j => j.Item)
+                    .ThenInclude(i => i.Brand)
+                .Include(j => j.Item)
+                    .ThenInclude(i => i.Cat)
+                .Include(j => j.Item)
+                    .ThenInclude(i => i.Certify)
+                .Include(j => j.Item)
+                    .ThenInclude(i => i.GoldType)
+                .Include(j => j.Item)
+                    .ThenInclude(i => i.Prod)
+                .FirstOrDefault(j => j.Id == id);
 
             if (jewelType == null)
             {
