@@ -13,36 +13,17 @@ const ItemListCointainer = () => {
 
   useEffect(async () => {
     setLoading(true);
-
-    // const itemsRef = collection(db, 'items');
-    // const q = categoryId
-    //   ? query(itemsRef, where('category', '==', categoryId))
-    //   : itemsRef;
-
     try {
       fetch("https://localhost:7211/api/JewelType")
           .then(res => res.json())
           .then(res => {
             setItems(res.$values)
           })
-      // const { docs } = await getDocs(q);
-      // const items = docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      // if (term) {
-      //   const filteredItems = items.filter((item) =>
-      //     item.title.toLowerCase().includes(term.trim().toLowerCase())
-      //   );
-      //   setItems(filteredItems);
-      // } else {
-      //   setItems(items);
-      // }
-      
       setLoading(false);
     } catch (err) {
       console.error(err);
     }
   }, [categoryId, term]);
-
-  console.log(items)
 
   return loading ? (
     <LoadingSpinner text='Loading products...' />

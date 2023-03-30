@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import {useMemo, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import debounce from '../../helpers/debounce';
@@ -6,6 +6,15 @@ import debounce from '../../helpers/debounce';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import ItemList from "../Item/ItemList";
+import ItemListCointainer from "../Item/ItemListCointainer";
+import Item from "../Item/Item";
+import Grid from "@mui/material/Grid";
+import {Button, CardActionArea, CardActions} from "@mui/material";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
 
 //styled components
 const Search = styled('div')(({ theme }) => ({
@@ -47,15 +56,43 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+const SearchResults = styled('div')(({ theme }) => ({
+  color: 'black',
+  position: 'absolute',
+  top: 'calc(100% + 4px)',
+  left: 0,
+  right: 0,
+  zIndex: theme.zIndex.tooltip,
+  maxHeight: '200px',
+  overflowY: 'auto',
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: theme.shadows[4],
+  '& > div': {
+    padding: theme.spacing(1),
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.action.hover, 0.5),
+    },
+  },
+}));
 
 const SearchBar = () => {
   const navigate = useNavigate();
+  const [result, setResult] = useState([]);
+  const imgPath = `../assets/img/`;
+  const handleNavigation = (e) => {
+    navigate(`item/${e}`);
+    document.querySelector('input[type="text"]').value = '';
+    setResult(undefined);
+  }
 
   const debouncedSearchHandler = useMemo(() => {
-    return debounce(
-      ({ target: { value } }) => navigate(`/search/${value}`),
-      600
-    );
+    return debounce((value) =>
+        fetch("https://localhost:7211/search?query=" + value)
+            .then(res => res.json())
+            .then(res => setResult(res.$values))
+        , 500);
   }, []);
 
   return (
@@ -66,8 +103,32 @@ const SearchBar = () => {
       <StyledInputBase
         placeholder='Search...'
         inputProps={{ 'aria-label': 'search', maxLength: 50 }}
-        onChange={debouncedSearchHandler}
+        onChange={(e) => debouncedSearchHandler(e.target.value)}
       />
+      {result !== undefined && (
+          <SearchResults>
+            {result.map((result) => (
+                <Card className='animate__animated animate__fadeIn' raised style={{backgroundColor: "rgb(203, 177, 124)"}}>
+                  <CardActions sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <CardMedia
+                        component='img'
+                        sx={{width: 70}}
+                        image={imgPath + result.id + '.jpg'}
+                        alt="alt"
+                        onClick={e => handleNavigation(result.id)}
+                    />
+                    <Button size='large' sx={{color: "white", "&:hover": {backgroundColor: "rgb(203,203,124)"}}}
+                            onClick={e => handleNavigation(result.id)}
+                    >
+                      <Typography variant='body2' color='text.secondary' noWrap>
+                        {result.jewelleryType} {result.id}
+                      </Typography>
+                    </Button>
+                  </CardActions>
+                </Card>
+            ))}
+          </SearchResults>
+      )}
     </Search>
   );
 };

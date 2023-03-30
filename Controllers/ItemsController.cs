@@ -67,21 +67,28 @@ namespace JewelleryStore.Controllers
 
             return item;
         }
-        //public async Task<ActionResult<ItemMst>> GetItemMst(string id)
+        // GET: search
+        //[HttpGet("/search")]
+        //public async Task<IActionResult> SearchItem(string query)
         //{
-        //  if (_context.ItemMsts == null)
-        //  {
-        //      return NotFound();
-        //  }
-        //    var itemMst = await _context.ItemMsts.FindAsync(id);
+        //    var item = await _context.ItemMsts
+        //        .Where(i => i.StyleCode.Contains(query) ||
+        //                    i.BrandId.Contains(query) ||
+        //                    i.CatId.Contains(query) ||
+        //                    i.ProdQuality.Contains(query) ||
+        //                    i.CertifyId.Contains(query) ||
+        //                    i.ProdId.Contains(query))
+        //        .Include(i => i.Brand)
+        //        .Include(i => i.Cat)
+        //        .Include(i => i.Certify)
+        //        .Include(i => i.GoldType)
+        //        .Include(i => i.Prod)
+        //        .Include(i => i.JewelTypeMsts)
+        //        .ToListAsync();
 
-        //    if (itemMst == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return itemMst;
+        //    return Ok(item);
         //}
+     
 
         // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
