@@ -14,12 +14,10 @@ const DispatchCheckout = ({
                           }) => {
     const [verification, setVerification] = useState(null);
     const [orderId, setOrderId] = useState(null);
-    const [error, setError] = useState(null);
-    console.log(cart)
-    console.log(userData)
+    const randomNum = Math.floor(Math.random()*100000);
+
     //TODO: inventory management shit
     useEffect(async () => {
-        // await dispatchOrder(cart, userData, totalCartPrice, setOrderId, setError);
         fetch("https://localhost:7211/api/verify",
             {
                 method: "POST",
@@ -35,16 +33,18 @@ const DispatchCheckout = ({
             })
             .then(res => res.status)
             .then(res => setVerification(res));
-        // if (verification == 200) {
-        //     fetch("https://localhost:7211/api/")
-        // }
-        // resetCart();
-        // resetUserData();
+        resetCart();
+        resetUserData();
     }, []);
-    return orderId ? (
+    useEffect(async () => {
+        if (verification == 200) {
+            setOrderId("ORD" + randomNum);
+        }
+    },[verification])
+    return (verification === 200) ? (
         <Success orderId={orderId}/>
-    ) : error ? (
-        <FailedTransaction error={error}/>
+    ) : (verification !== 200) ? (
+        <FailedTransaction error={verification}/>
     ) : (
         <LoadingSpinner text='Transaction processing...'/>
     );

@@ -14,17 +14,16 @@ const Success = ({ orderId }) => {
         <img src='/assets/img/jewellery-logo.png' alt='success' width={200} />
       </Box>
       <Typography variant='h5' align='center' gutterBottom>
-        Muchas gracias por tu compra!
+          Thank you ver much for your purchase!
       </Typography>
 
-      <Typography variant='subtitle1'>
-        Tu código de compra es:{' '}
-        <Typography variant='subtitle' color='primary'>
-          {orderId}
+        <Typography variant='subtitle1'>
+            Your purchase code is:{' '}
+            <Typography variant='subtitle' color='primary'>
+                {orderId}
+            </Typography>
+            . We have sent an email to your address with the details of your purchase and we will be in touch with you to follow up on the status of your order.
         </Typography>
-        . Enviamos un email a tu correo con los detalles de tu compra y
-        estaremos en contacto con vos para seguir el estado de tu pedido.
-      </Typography>
 
       <Button
         color='primary'

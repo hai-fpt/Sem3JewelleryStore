@@ -6,8 +6,7 @@ const FailedTransaction = ({ error }) => {
   return (
     <>
       <Typography variant='h5' align='center' gutterBottom>
-        Hubo un error en la transacción... Contacte con el administrador para
-        más información.
+        There was an error in your transaction. Contact an administrator to resolve the problem.
       </Typography>
 
       <Divider
@@ -19,7 +18,7 @@ const FailedTransaction = ({ error }) => {
       />
 
       <Typography variant='subtitle1' align='center' gutterBottom>
-        {`Detalle del problema: ${error}`}
+        {`Details: ${error}`}
       </Typography>
 
       <GoBackBtn />
