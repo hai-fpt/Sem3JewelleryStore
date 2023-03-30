@@ -339,3 +339,7 @@
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/System.Web.Http.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/System.Web.Http.Cors.dll
 /Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/jewellery-store-be/jsconfig.json
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/jewellery-store-be/package-lock.json
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/jewellery-store-be/package.json
+/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/bin/Debug/net7.0/jewellery-store-be/public/manifest.json

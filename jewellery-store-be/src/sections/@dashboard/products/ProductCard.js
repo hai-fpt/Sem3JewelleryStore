@@ -1,12 +1,24 @@
 import PropTypes from 'prop-types';
 // @mui
-import { Box, Card, Link, Typography, Stack } from '@mui/material';
+import {
+  Box,
+  Card,
+  Link,
+  Typography,
+  Stack,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Button,
+  CardActions
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 // components
 import Label from '../../../components/label';
 import { ColorPreview } from '../../../components/color-utils';
+import {useNavigate} from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
@@ -24,55 +36,37 @@ ShopProductCard.propTypes = {
   product: PropTypes.object,
 };
 
-export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
+export default function ShopProductCard(props) {
+  console.log(props)
+  const id = props.id;
+  const imgPath = `../assets/img/${id}.jpg`;
+  const navigate = useNavigate();
+  const handleNavigation = () => navigate(`/item/${id}`);
 
   return (
-    <Card>
-      <Box sx={{ pt: '100%', position: 'relative' }}>
-        {status && (
-          <Label
-            variant="filled"
-            color={(status === 'sale' && 'error') || 'info'}
-            sx={{
-              zIndex: 9,
-              top: 16,
-              right: 16,
-              position: 'absolute',
-              textTransform: 'uppercase',
-            }}
-          >
-            {status}
-          </Label>
-        )}
-        <StyledProductImg alt={name} src={cover} />
-      </Box>
-
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
-            {name}
-          </Typography>
-        </Link>
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
-          <Typography variant="subtitle1">
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                color: 'text.disabled',
-                textDecoration: 'line-through',
-              }}
-            >
-              {priceSale && fCurrency(priceSale)}
+      <Card className='animate__animated animate__fadeIn' raised>
+        <CardActionArea>
+          <CardMedia
+              component='img'
+              height='260'
+              image={imgPath}
+              alt={id}
+              onClick={handleNavigation}
+          />
+          <CardContent>
+            <Typography variant='body2' noWrap>
+              {props.jewelleryType.charAt(0).toUpperCase() + props.jewelleryType.slice(1)} {id}
             </Typography>
-            &nbsp;
-            {fCurrency(price)}
+          </CardContent>
+        </CardActionArea>
+        <CardActions sx={{ display: 'flex', justifyContent: 'space-around' }}>
+          <Button size='small' onClick={handleNavigation}>
+            Details
+          </Button>
+          <Typography variant='subtitle2' color='text.secondary' align='right'>
+            {`$${props.item.mrp}`}
           </Typography>
-        </Stack>
-      </Stack>
-    </Card>
+        </CardActions>
+      </Card>
   );
 }

@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 
 import LoadingSpinner from '../ui/LoadingSpinner';
 import ItemDetail from './ItemDetail';
-import { db } from '../../firebase/config';
-import { doc, getDoc } from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);

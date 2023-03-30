@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 
-import dispatchOrder from '../../firebase/dispatchOrder';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import Success from './Success';
 import FailedTransaction from './FailedTransaction';

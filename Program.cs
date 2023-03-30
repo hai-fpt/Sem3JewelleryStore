@@ -25,6 +25,7 @@ builder.Services.AddCors(options =>
         {
             builder
                 .WithOrigins("http://localhost:3000")
+                .WithOrigins("http://localhost:3001")
                 .WithMethods("GET")
                 .WithMethods("POST")
                 .WithMethods("PUT")
