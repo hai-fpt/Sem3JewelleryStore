@@ -15,7 +15,7 @@ const ItemListCointainer = () => {
       fetch("https://localhost:7211/api/JewelType")
           .then(res => res.json())
           .then(res => {
-            setItems(res.$values)
+            setItems(res)
           })
       setLoading(false);
     } catch (err) {

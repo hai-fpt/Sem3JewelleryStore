@@ -125,6 +125,7 @@ namespace JewelleryStore.Controllers
         [HttpPost]
         public IActionResult CreateItem([FromBody] ItemMst item)
         {
+            Console.WriteLine("I AM HERERERERERE");
             var brand = _context.BrandMsts.FirstOrDefault(b => b.BrandId == item.BrandId);
             if (brand == null)
             {

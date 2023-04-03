@@ -8,10 +8,11 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 
 const Item = (props) => {
-  const id = props.id;
+  const id = props.Id;
   const imgPath = `../assets/img/${id}.jpg`;
   const navigate = useNavigate();
   const handleNavigation = () => navigate(`/item/${id}`);
+  console.log(props)
 
   return (
     <Card className='animate__animated animate__fadeIn' raised style={{backgroundColor: "rgb(203, 177, 124)"}}>
@@ -25,7 +26,7 @@ const Item = (props) => {
         />
         <CardContent>
           <Typography variant='body2' color='text.secondary' noWrap>
-            {props.jewelleryType.charAt(0).toUpperCase() + props.jewelleryType.slice(1)} {id}
+            {props.JewelleryType.charAt(0).toUpperCase() + props.JewelleryType.slice(1)} {id}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -34,7 +35,7 @@ const Item = (props) => {
           Details
         </Button>
         <Typography variant='subtitle2' color='text.secondary' align='right'>
-          {`$${props.item.mrp}`}
+          {`$${props.Item.Mrp}`}
         </Typography>
       </CardActions>
     </Card>

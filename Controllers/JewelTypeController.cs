@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JewelleryStore.Models;
+using Newtonsoft.Json;
 
 namespace JewelleryStore.Controllers
 {
@@ -22,15 +23,42 @@ namespace JewelleryStore.Controllers
 
         // GET: api/JewelType
         [HttpGet]
+        //public async Task<ActionResult<IEnumerable<JewelTypeMst>>> GetJewelTypeMsts()
+        //{
+        //    var jewelTypeMsts = await _context.JewelTypeMsts
+        //        .Include(j => j.Item)
+        //            .ThenInclude(i => i.Brand)
+        //        .Include(j => j.Item)
+        //            .ThenInclude(i => i.Cat)
+        //        .Include(j => j.Item)
+        //            .ThenInclude(i => i.Certify)
+        //        .Include(j => j.Item)
+        //            .ThenInclude(i => i.GoldType)
+        //        .ToListAsync();
+
+        //    if (jewelTypeMsts == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return jewelTypeMsts;
+        //}
         public async Task<ActionResult<IEnumerable<JewelTypeMst>>> GetJewelTypeMsts()
         {
             var jewelTypeMsts = await _context.JewelTypeMsts.Include(j => j.Item).ToListAsync();
-            
-          if (_context.JewelTypeMsts == null)
-          {
-              return NotFound();
-          }
-            return await _context.JewelTypeMsts.ToListAsync();
+
+            var jsonSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            var json = JsonConvert.SerializeObject(jewelTypeMsts, Formatting.None, jsonSettings);
+
+            if (_context.JewelTypeMsts == null)
+            {
+                return NotFound();
+            }
+            return Content(json, "application/json");
         }
 
         // GET: api/JewelType/5
@@ -134,7 +162,6 @@ namespace JewelleryStore.Controllers
                 JewelleryType = jewelType.JewelleryType,
                 ImgPath = jewelType.ImgPath,
                 ItemId = jewelType.ItemId,
-                Item = item
             };
 
             _context.JewelTypeMsts.Add(newJewelType);
