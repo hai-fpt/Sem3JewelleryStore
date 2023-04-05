@@ -55,6 +55,8 @@ public partial class ItemMst
 
     public virtual CertifyMst Certify { get; set; }
 
+    public virtual ICollection<DimMst> DimMsts { get; } = new List<DimMst>();
+
     public virtual GoldKrtMst GoldType { get; set; }
 
     public virtual ICollection<JewelTypeMst> JewelTypeMsts { get; } = new List<JewelTypeMst>();

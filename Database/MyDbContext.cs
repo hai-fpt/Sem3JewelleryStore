@@ -216,11 +216,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<DimMst>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("DimMst");
+            entity.HasKey(e => e.DimId).HasName("PRIMARY");
 
-            entity.HasIndex(e => e.DimId, "DimID");
+            entity.ToTable("DimMst");
 
             entity.HasIndex(e => e.DimQltyId, "DimQlty_ID");
 
@@ -228,6 +226,12 @@ public partial class MyDbContext : DbContext
 
             entity.HasIndex(e => e.StyleCode, "Style_Code");
 
+            entity.Property(e => e.DimId)
+                .HasMaxLength(10)
+                .IsFixedLength()
+                .HasColumnName("DimID")
+                .UseCollation("utf8mb3_general_ci")
+                .HasCharSet("utf8mb3");
             entity.Property(e => e.DimAmt)
                 .HasPrecision(10, 2)
                 .HasColumnName("Dim_Amt");
@@ -237,12 +241,6 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.DimGm)
                 .HasPrecision(10, 2)
                 .HasColumnName("Dim_Gm");
-            entity.Property(e => e.DimId)
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("DimID")
-                .UseCollation("utf8mb3_general_ci")
-                .HasCharSet("utf8mb3");
             entity.Property(e => e.DimPcs)
                 .HasPrecision(10, 2)
                 .HasColumnName("Dim_Pcs");
@@ -268,19 +266,20 @@ public partial class MyDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("Style_Code");
 
-            entity.HasOne(d => d.Dim).WithMany()
-                .HasForeignKey(d => d.DimId)
+            entity.HasOne(d => d.Dim).WithOne(p => p.DimMst)
+                .HasForeignKey<DimMst>(d => d.DimId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("dimmst_ibfk_2");
 
-            entity.HasOne(d => d.DimQlty).WithMany()
+            entity.HasOne(d => d.DimQlty).WithMany(p => p.DimMsts)
                 .HasForeignKey(d => d.DimQltyId)
                 .HasConstraintName("dimmst_ibfk_3");
 
-            entity.HasOne(d => d.DimSubType).WithMany()
+            entity.HasOne(d => d.DimSubType).WithMany(p => p.DimMsts)
                 .HasForeignKey(d => d.DimSubTypeId)
                 .HasConstraintName("dimmst_ibfk_4");
 
-            entity.HasOne(d => d.StyleCodeNavigation).WithMany()
+            entity.HasOne(d => d.StyleCodeNavigation).WithMany(p => p.DimMsts)
                 .HasForeignKey(d => d.StyleCode)
                 .HasConstraintName("dimmst_ibfk_1");
         });

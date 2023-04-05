@@ -16,4 +16,6 @@ public partial class DimInfoMst
     public string DimPrice { get; set; }
 
     public string DimImg { get; set; }
+
+    public virtual DimMst DimMst { get; set; }
 }

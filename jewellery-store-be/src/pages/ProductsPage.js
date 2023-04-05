@@ -55,7 +55,7 @@ export default function ProductsPage() {
             } catch (err) {
                 console.error(err);
             }
-        }, 5000);
+        }, 3000);
         return () => clearInterval(interval);
     }, [categoryId, term]);
 
@@ -191,7 +191,6 @@ export default function ProductsPage() {
 
     return (
         <>
-
             <Container>
                 <Typography variant="h4" sx={{mb: 5}}>
                     Products
