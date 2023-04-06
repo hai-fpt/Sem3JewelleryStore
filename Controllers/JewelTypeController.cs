@@ -61,6 +61,30 @@ namespace JewelleryStore.Controllers
             return Content(json, "application/json");
         }
 
+        //GET: api/JewelType/category
+        [HttpGet("category")]
+        public async Task<ActionResult<IEnumerable<JewelTypeMst>>> GetJewelTypeMstForCat(string category)
+        {
+            var jewelTypeMsts = await _context.JewelTypeMsts
+                .Include(j => j.Item)
+                .Where(j => j.JewelleryType.ToLower() == category.ToLower())
+                .ToListAsync();
+
+            if (jewelTypeMsts == null)
+            {
+                jewelTypeMsts = await _context.JewelTypeMsts.Include(j => j.Item).ToListAsync();
+            }
+
+            var jsonSetings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+            var json = JsonConvert.SerializeObject(jewelTypeMsts, Formatting.None, jsonSetings);
+
+            return Content(json, "application/json");
+        }
+
         // GET: api/JewelType/5
         [HttpGet("{id}")]
         public IActionResult GetJewelTypeMst(string id)

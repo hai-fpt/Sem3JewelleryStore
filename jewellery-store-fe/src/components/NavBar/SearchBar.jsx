@@ -112,8 +112,6 @@ const SearchBar = () => {
             .then(res => setResult(res.$values))
         , 500);
   }, []);
-  console.log(result)
-
   return (
     <Search>
       <SearchIconWrapper>
