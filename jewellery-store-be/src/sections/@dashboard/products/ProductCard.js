@@ -10,7 +10,7 @@ import {
     CardMedia,
     CardContent,
     Button,
-    CardActions, Snackbar
+    CardActions, Snackbar, Backdrop, Fade, TextField, Modal
 } from '@mui/material';
 import {styled} from '@mui/material/styles';
 // utils
@@ -24,13 +24,17 @@ import {useState} from "react";
 
 // ----------------------------------------------------------------------
 
-const StyledProductImg = styled('img')({
-    top: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
+const boxStyle = {
     position: 'absolute',
-});
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '54rem',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+}
 
 // ----------------------------------------------------------------------
 
@@ -41,21 +45,43 @@ ShopProductCard.propTypes = {
 export default function ShopProductCard(props) {
     const id = props.Id;
     const imgPath = `../assets/img/${id}.jpg`;
-    const navigate = useNavigate();
-    const handleNavigation = () => navigate(`/item/${id}`);
     const handleDelete = (id) => {
         fetch(`https://localhost:7211/api/JewelType/${id}`, {
             method: "DELETE"
         })
             .then(res => {
-                handleOpen();
                 window.location.reload();
             })
             .catch(err => console.error(err))
     }
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [editOpen, setEditOpen] = useState(false);
+    const handleEditOpen = () => setEditOpen(true);
+    const handleEditClose = () => setEditOpen(false);
+
+    const [editItem, setEditItem] = useState({
+        id: id,
+        jewelleryType: props.JewelleryType,
+        itemId: props.itemId,
+        imgPath: props.ImgPath
+    })
+    const handleInputChange = (e) => {
+        setEditItem({...editItem, [e.target.name]: e.target.value});
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch(`https://localhost:7211/api/JewelType/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editItem)
+        })
+            .then(() => {
+                setEditItem({...editItem});
+                handleEditClose();
+            })
+            .catch(err => console.error(err));
+    }
 
     return (
         <Card className='animate__animated animate__fadeIn' raised>
@@ -65,7 +91,6 @@ export default function ShopProductCard(props) {
                     height='260'
                     image={imgPath}
                     alt={id}
-                    onClick={handleNavigation}
                 />
                 <CardContent>
                     <Typography variant='body2' noWrap>
@@ -74,20 +99,63 @@ export default function ShopProductCard(props) {
                 </CardContent>
             </CardActionArea>
             <CardActions sx={{display: 'flex', justifyContent: 'space-around'}}>
-                <Button size='small' onClick={handleNavigation}>
+                <Button size='small' onClick={handleEditOpen}>
                     Details
                 </Button>
                 <Button sx={{color: "red"}} size='small' onClick={() => handleDelete(props.Id)}>
                     Delete
                 </Button>
             </CardActions>
-            <Snackbar
-                open={open}
-                autoHideDuration={6000}
-                onClose={handleClose}
+            <Modal
+                open={editOpen}
+                onClose={handleEditClose}
+                closeAfterTransition
+                slots={{backdrop: Backdrop}}
+                slotProps={{
+                    backdrop: {
+                        timeout: 500
+                    }
+                }}
             >
-                <Alert severity="error">Deleted</Alert>
-            </Snackbar>
+                <Fade in={editOpen}>
+                    <Box sx={boxStyle}>
+                        <Typography variant="h6" component="h2">
+                            Edit product
+                        </Typography>
+                        <Typography sx={{mt: 2}}>
+                            <Box
+                                sx={{
+                                    '& .MuiTextField-root': {m: 1, width: '25ch'}
+                                }}
+                                component="form"
+                                noValidate
+                                autoComplete="off"
+                                onSubmit={handleSubmit}>
+                                <div>
+                                    <TextField
+                                        label="Jewellery Type"
+                                        name="jewelleryType"
+                                        value={props.jewelleryType}
+                                        onChange={handleInputChange}
+                                    />
+
+                                    <TextField
+                                        label="Item ID"
+                                        name="itemId"
+                                        value={props.itemId}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                            </Box>
+                        </Typography>
+                        <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
+                            <Button variant="contained" sx={{backgroundColor: "#2196f3"}} onClick={handleSubmit}>
+                                Edit Product
+                            </Button>
+                        </div>
+                    </Box>
+                </Fade>
+            </Modal>
         </Card>
     );
 }

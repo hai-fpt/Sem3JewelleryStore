@@ -106,7 +106,6 @@ const SearchBar = () => {
   }
 
   const debouncedSearchHandler = useMemo(() => {
-    console.log(searchCat)
     return debounce((value) =>
         fetch("https://localhost:7211/search?query=" + value )
             .then(res => res.json())
