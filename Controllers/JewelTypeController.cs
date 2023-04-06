@@ -89,9 +89,29 @@ namespace JewelleryStore.Controllers
 
         // GET: search
         [HttpGet("/search")]
-        public async Task<IActionResult> SearchItem(string query)
+        public async Task<IActionResult> SearchItem(string query, string filter)
         {
-            var jewelType = await _context.JewelTypeMsts
+            //var jewelType = await _context.JewelTypeMsts
+            //    .Include(j => j.Item)
+            //        .ThenInclude(i => i.Brand)
+            //    .Include(j => j.Item)
+            //        .ThenInclude(i => i.Cat)
+            //    .Include(j => j.Item)
+            //        .ThenInclude(i => i.Certify)
+            //    .Include(j => j.Item)
+            //        .ThenInclude(i => i.GoldType)
+            //    .Include(j => j.Item)
+            //        .ThenInclude(i => i.Prod)
+            //    .Where(j => j.Id.Contains(query) ||
+            //                j.Item.StyleCode.Contains(query) ||
+            //                j.Item.Brand.BrandId.Contains(query) ||
+            //                j.Item.Cat.CatName.Contains(query) ||
+            //                j.Item.Certify.CertifyType.Contains(query) ||
+            //                j.Item.GoldType.GoldCrt.Contains(query) ||
+            //                j.Item.Prod.ProdType.Contains(query))
+            //    .ToListAsync();
+
+            IQueryable<JewelTypeMst> queryable = _context.JewelTypeMsts
                 .Include(j => j.Item)
                     .ThenInclude(i => i.Brand)
                 .Include(j => j.Item)
@@ -101,15 +121,38 @@ namespace JewelleryStore.Controllers
                 .Include(j => j.Item)
                     .ThenInclude(i => i.GoldType)
                 .Include(j => j.Item)
-                    .ThenInclude(i => i.Prod)
+                    .ThenInclude(i => i.Prod);
+            if (!string.IsNullOrEmpty(filter))
+            {
+                switch (filter)
+                {
+                    case "Brand":
+                        queryable = queryable.Where(j => j.Item.Brand.BrandId.Contains(query) || j.Item.Brand.BrandType.Contains(query));
+                        break;
+                    case "Cat":
+                        queryable = queryable.Where(j => j.Item.Cat.CatId.Contains(query) || j.Item.Cat.CatName.Contains(query));
+                        break;
+                    case "Certify":
+                        queryable = queryable.Where(j => j.Item.Certify.CertifyId.Contains(query) || j.Item.Certify.CertifyType.Contains(query));
+                        break;
+                    case "Gold":
+                        queryable = queryable.Where(j => j.Item.GoldType.GoldTypeId.Contains(query) || j.Item.GoldType.GoldCrt.Contains(query));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            var jewelType = await queryable
                 .Where(j => j.Id.Contains(query) ||
                             j.Item.StyleCode.Contains(query) ||
-                            j.Item.Brand.BrandId.Contains(query) ||
-                            j.Item.Cat.CatName.Contains(query) ||
-                            j.Item.Certify.CertifyType.Contains(query) ||
-                            j.Item.GoldType.GoldCrt.Contains(query) ||
-                            j.Item.Prod.ProdType.Contains(query))
+                            j.Item.Brand.BrandId.Contains(query) || j.Item.Brand.BrandType.Contains(query) ||
+                            j.Item.Cat.CatId.Contains(query) || j.Item.Cat.CatName.Contains(query) ||
+                            j.Item.Certify.CertifyId.Contains(query) || j.Item.Certify.CertifyType.Contains(query) ||
+                            j.Item.GoldType.GoldTypeId.Contains(query) || j.Item.GoldType.GoldCrt.Contains(query))
                 .ToListAsync();
+
+
             return Ok(jewelType);
         }
 
@@ -181,7 +224,7 @@ namespace JewelleryStore.Controllers
         //        return NotFound($"Item with ID {itemId} not found");
         //    }
         //    jewelTypeMst.Item = item;
-            
+
         //    _context.JewelTypeMsts.Add(jewelTypeMst);
         //    try
         //    {

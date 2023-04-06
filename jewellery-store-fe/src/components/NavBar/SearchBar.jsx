@@ -10,11 +10,13 @@ import ItemList from "../Item/ItemList";
 import ItemListCointainer from "../Item/ItemListCointainer";
 import Item from "../Item/Item";
 import Grid from "@mui/material/Grid";
-import {Button, CardActionArea, CardActions} from "@mui/material";
+import {Button, CardActionArea, CardActions, Select} from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 
 //styled components
 const Search = styled('div')(({ theme }) => ({
@@ -42,6 +44,17 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
 }));
+
+const SearchSelectWrapper = styled("div")(({theme}) => ({
+  padding: theme.spacing(0),
+  height: '100%',
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  right: 0,
+  top: 0
+}))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -80,6 +93,7 @@ const SearchResults = styled('div')(({ theme }) => ({
 const SearchBar = () => {
   const navigate = useNavigate();
   const [result, setResult] = useState([]);
+  const [searchCat, setSearchCat] = useState("");
   const imgPath = `../assets/img/`;
   const handleNavigation = (e) => {
     navigate(`item/${e}`);
@@ -87,13 +101,19 @@ const SearchBar = () => {
     setResult(undefined);
   }
 
+  const handleChange = (e) => {
+    setSearchCat(e.target.value);
+  }
+
   const debouncedSearchHandler = useMemo(() => {
+    console.log(searchCat)
     return debounce((value) =>
-        fetch("https://localhost:7211/search?query=" + value)
+        fetch("https://localhost:7211/search?query=" + value )
             .then(res => res.json())
             .then(res => setResult(res.$values))
         , 500);
   }, []);
+  console.log(result)
 
   return (
     <Search>
@@ -129,6 +149,39 @@ const SearchBar = () => {
             ))}
           </SearchResults>
       )}
+      <SearchSelectWrapper>
+        <FormControl size="small">
+        <Select
+            labelStyle={{color: 'white'}}
+            sx={{
+              color: "white",
+              '.MuiOutlinedInput-notchedOutline': {
+                border: 0
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                border: 0
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                border: 0
+              },
+              '.MuiSvgIcon-root ': {
+                fill: "white !important",
+              }
+            }}
+            labelId="categories-select"
+            id="categories-select"
+            value={searchCat}
+            label="Search Category"
+            onChange={handleChange}
+        >
+          <MenuItem value={"Item"}>Item name</MenuItem>
+          <MenuItem value={"Brand"}>Brand</MenuItem>
+          <MenuItem value={"Cat"}>Category</MenuItem>
+          <MenuItem value={"Certify"}>Certification</MenuItem>
+          <MenuItem value={"Gold"}>Gold Karat</MenuItem>
+        </Select>
+        </FormControl>
+      </SearchSelectWrapper>
     </Search>
   );
 };
