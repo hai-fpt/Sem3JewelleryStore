@@ -7,7 +7,7 @@ USE JewelryStore;
 DROP TABLE IF EXISTS `AdminLoginMst`;
 CREATE TABLE `AdminLoginMst`
 (
-    `userName` varchar(50) NOT NULL PRIMARY KEY,
+    `userName` varchar(50)  NOT NULL PRIMARY KEY,
     `Password` varchar(256) NOT NULL
 );
 
@@ -78,11 +78,11 @@ CREATE TABLE `ItemMst`
     `Other_Making` numeric(10, 2) NOT NULL,
     `Tot_Making`   numeric(10, 2) NOT NULL,
     `MRP`          numeric(10, 2) NOT NULL,
-    FOREIGN KEY (Brand_ID) REFERENCES BrandMst(Brand_ID),
-    FOREIGN KEY (Cat_ID) REFERENCES CatMst(Cat_ID),
-    FOREIGN KEY (Certify_ID) REFERENCES CertifyMst(Certify_ID),
-    FOREIGN KEY (Prod_ID) REFERENCES ProdMst(Prod_ID),
-    FOREIGN KEY (GoldType_ID) REFERENCES GoldKrtMst(GoldType_ID)
+    FOREIGN KEY (Brand_ID) REFERENCES BrandMst (Brand_ID),
+    FOREIGN KEY (Cat_ID) REFERENCES CatMst (Cat_ID),
+    FOREIGN KEY (Certify_ID) REFERENCES CertifyMst (Certify_ID),
+    FOREIGN KEY (Prod_ID) REFERENCES ProdMst (Prod_ID),
+    FOREIGN KEY (GoldType_ID) REFERENCES GoldKrtMst (GoldType_ID)
 );
 
 -- Table structure for DimInfoMst
@@ -101,7 +101,7 @@ CREATE TABLE `DimInfoMst`
 DROP TABLE IF EXISTS `DimQltyMst`;
 CREATE TABLE `DimQltyMst`
 (
-    `DimQlty_ID` nchar(10) NOT NULL PRIMARY KEY,
+    `DimQlty_ID` nchar(10)   NOT NULL PRIMARY KEY,
     `DimQlty`    varchar(50) NOT NULL
 );
 
@@ -109,7 +109,7 @@ CREATE TABLE `DimQltyMst`
 DROP TABLE IF EXISTS `DimQltySubMst`;
 CREATE TABLE `DimQltySubMst`
 (
-    `DimSubType_ID` nchar(10) NOT NULL PRIMARY KEY,
+    `DimSubType_ID` nchar(10)   NOT NULL PRIMARY KEY,
     `DimQlty`       varchar(50) NOT NULL
 );
 
@@ -118,7 +118,7 @@ DROP TABLE IF EXISTS `DimMst`;
 CREATE TABLE `DimMst`
 (
     `Style_Code`    varchar(50),
-    `DimID`         nchar(10),
+    `DimID`         nchar(10) PRIMARY KEY ,
     `DimQlty_ID`    nchar(10),
     `DimSubType_ID` nchar(10),
     `Dim_Crt`       numeric(10, 2),
@@ -159,18 +159,18 @@ CREATE TABLE `StoneMst`
 DROP TABLE IF EXISTS `UserRegMst`;
 CREATE TABLE `UserRegMst`
 (
-    `userID`    nchar(10)    NOT NULL PRIMARY KEY,
-    `userFname` text         NOT NULL,
-    `userLname` text         NOT NULL,
-    `address`   varchar(255) NOT NULL,
+    `userID`    nchar(10) PRIMARY KEY,
+    `userFname` text,
+    `userLname` text,
+    `address`   varchar(255),
     `city`      nvarchar(50),
     `state`     nvarchar(50),
-    `mobNo`     text         NOT NULL,
-    `emailID`   text         NOT NULL,
-    `dob`       nvarchar(50) NOT NULL,
-    `cdate`     nvarchar(50) NOT NULL,
-    `username` varchar(50) UNIQUE NOT NULL ,
-    `password`  varchar(256)  NOT NULL
+    `mobNo`     text,
+    `emailID`   text,
+    `dob`       nvarchar(50),
+    `cdate`     nvarchar(50),
+    `username`  varchar(50) UNIQUE,
+    `password`  varchar(256)
 );
 
 -- Table structure for Inquiry
@@ -195,7 +195,7 @@ CREATE TABLE `JewelTypeMst`
     `ID`             nchar(10)   NOT NULL PRIMARY KEY,
     `Jewellery_Type` varchar(50) NOT NULL,
     `Item_ID`        varchar(50) NOT NULL,
-    `img_path`       varchar(50) NOT NULL ,
+    `img_path`       varchar(50) NOT NULL,
     FOREIGN KEY (Item_ID) REFERENCES ItemMst (Style_Code)
 );
 
@@ -203,18 +203,28 @@ CREATE TABLE `JewelTypeMst`
 DROP TABLE IF EXISTS `CartList`;
 CREATE TABLE `CartList`
 (
-    `ID`           nchar(10)      NOT NULL PRIMARY KEY,
-    `Product_Name` varchar(50)    NOT NULL,
-    `MRP`          numeric(10, 2) NOT NULL
+    `id`       nchar(10)      NOT NULL PRIMARY KEY,
+    `title`    varchar(50)    NOT NULL,
+    `quantity` varchar(50)    NOT NULL,
+    `price`    numeric(10, 2) NOT NULL
 );
 
--- Table structure for CartJewel
-DROP TABLE IF EXISTS `CartJewel`;
-CREATE TABLE `CartJewel`
+-- Table structure for mock credit cards
+DROP TABLE IF EXISTS `CreditCard`;
+CREATE TABLE `CreditCard`
 (
-    `Cart_ID`  nchar(10) NOT NULL,
-    `Jewel_ID` nchar(10) NOT NULL,
-    PRIMARY KEY (Cart_ID, Jewel_ID),
-    FOREIGN KEY (Cart_ID) REFERENCES CartList (ID),
-    FOREIGN KEY (Jewel_ID) REFERENCES JewelTypeMst (ID)
+    `Card_Number`     varchar(16) NOT NULL PRIMARY KEY,
+    `Card_Name`       varchar(50) NOT NULL,
+    `Card_CVV`        varchar(10) NOT NULL,
+    `Card_Expiration` nchar(10)   NOT NULL
+);
+
+-- Table structure for Income
+DROP TABLE IF EXISTS `Income`;
+CREATE TABLE `Income`
+(
+    `Customer_Name` varchar(50) NOT NULL PRIMARY KEY,
+    `Customer_Card` varchar(16) NOT NULL,
+    `Amount`        varchar(50) NOT NULL,
+    FOREIGN KEY (Customer_Card) REFERENCES CreditCard (Card_Number)
 );

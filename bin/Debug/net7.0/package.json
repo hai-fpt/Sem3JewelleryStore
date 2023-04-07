@@ -1,0 +1,10 @@
+{
+    "name": "jewellerystoreproj",
+    "scripts": {
+        "start": "concurrently \"cd jewellery-store-be && npm run start\" \"cd jewellery-store-fe && npm run dev\" \"dotnet run\""
+    },
+    "dependencies": {
+        "concurrently": "^8.0.1"
+    },
+    "devDependencies": {}
+}

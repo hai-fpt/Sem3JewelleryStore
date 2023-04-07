@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/JewelleryStore.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\FPTAptech\\Sem3Jewellery\\Sem3JewelleryStore\\JewelleryStore.csproj": {}
   },
   "projects": {
-    "/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/JewelleryStore.csproj": {
+    "C:\\Users\\Admin\\Desktop\\FPTAptech\\Sem3Jewellery\\Sem3JewelleryStore\\JewelleryStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/JewelleryStore.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\FPTAptech\\Sem3Jewellery\\Sem3JewelleryStore\\JewelleryStore.csproj",
         "projectName": "JewelleryStore",
-        "projectPath": "/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/JewelleryStore.csproj",
-        "packagesPath": "/Users/mz01-hainvh/.nuget/packages/",
-        "outputPath": "/Users/mz01-hainvh/Desktop/untitled folder/JewelleryStore/JewelleryStore/obj/",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\FPTAptech\\Sem3Jewellery\\Sem3JewelleryStore\\JewelleryStore.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\FPTAptech\\Sem3Jewellery\\Sem3JewelleryStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mz01-hainvh/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -136,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
