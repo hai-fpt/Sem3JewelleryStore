@@ -3,8 +3,7 @@ import {useEffect, useState} from 'react';
 import {Backdrop, Box, Button, Container, Fade, Modal, Snackbar, Stack, TextField, Typography} from '@mui/material';
 // components
 import {ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar} from '../sections/@dashboard/products';
-// mock
-import PRODUCTS from '../_mock/products';
+
 import {useParams} from "react-router-dom";
 import {Alert} from "@mui/lab";
 // ----------------------------------------------------------------------

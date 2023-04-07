@@ -16,8 +16,7 @@ import {
 // components
 import Iconify from '../components/iconify';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../sections/@dashboard/blog';
-// mock
-import POSTS from '../_mock/blog';
+
 import {Alert} from "@mui/lab";
 import {ProductList} from "../sections/@dashboard/products";
 import {useEffect, useState} from "react";
