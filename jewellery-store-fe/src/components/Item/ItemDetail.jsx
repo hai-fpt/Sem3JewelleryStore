@@ -20,7 +20,7 @@ import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 const ItemDetail = (props) => {
   const id = props.id;
   const title = props.jewelleryType.charAt(0).toUpperCase() + props.jewelleryType.slice(1);
-  const price = props.item.mrp;
+  const price = props.mrp;
   const stock = props.item.quantity;
   const { addItemToCart, isInCart } = useContext(CartContext);
   const [showSuccessBar, setShowSuccessBar] = useState(false);

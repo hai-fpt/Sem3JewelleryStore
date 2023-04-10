@@ -229,6 +229,7 @@ namespace JewelleryStore.Controllers
                 JewelleryType = jewelType.JewelleryType,
                 ImgPath = jewelType.ImgPath,
                 ItemId = jewelType.ItemId,
+                Mrp = jewelType.Mrp
             };
 
             _context.JewelTypeMsts.Add(newJewelType);

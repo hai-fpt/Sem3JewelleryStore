@@ -8,7 +8,6 @@ const ItemListCointainer = () => {
   const [items, setItems] = useState(null);
   const [loading, setLoading] = useState(false);
   const { categoryId, term } = useParams();
-  console.log(categoryId)
 
   useEffect(async () => {
     setLoading(true);

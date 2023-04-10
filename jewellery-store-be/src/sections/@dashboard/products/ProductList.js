@@ -10,11 +10,18 @@ ProductList.propTypes = {
 };
 
 export default function ProductList({ products }) {
+    const sortItems = () => {
+        const sortedItems = products.sort((a, b) => {
+            const idA = parseInt(a.id.substring(2));
+            const idB = parseInt(b.id.substring(2));
+            return idA - idB;
+        })
+    }
   return (
       <>
           <Grid container spacing={3}>
               {products?.map((product) => (
-                  <Grid key={product.id} item xs={12} sm={6} md={3}>
+                  <Grid key={product.id} item xs={12} sm={6} md={4}>
                       <ShopProductCard {...product}/>
                   </Grid>
               ))}

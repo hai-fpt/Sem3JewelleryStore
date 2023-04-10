@@ -195,9 +195,11 @@ CREATE TABLE `JewelTypeMst`
     `ID`             nchar(10)   NOT NULL PRIMARY KEY,
     `Jewellery_Type` varchar(50) NOT NULL,
     `Item_ID`        varchar(50) NOT NULL,
+    `MRP`          numeric(10, 2) NOT NULL,
     `img_path`       varchar(50) NOT NULL,
     FOREIGN KEY (Item_ID) REFERENCES ItemMst (Style_Code)
 );
+
 
 -- Table structure for CartList
 DROP TABLE IF EXISTS `CartList`;

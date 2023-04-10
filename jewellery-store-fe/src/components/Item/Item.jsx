@@ -34,7 +34,7 @@ const Item = (props) => {
           Details
         </Button>
         <Typography variant='subtitle2' color='text.secondary' align='right'>
-          {`$${props.Item.Mrp}`}
+          {`$${props.Mrp}`}
         </Typography>
       </CardActions>
     </Card>

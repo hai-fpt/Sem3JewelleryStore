@@ -29,7 +29,7 @@ const boxStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '54rem',
+    width: '37rem',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -133,9 +133,17 @@ export default function ShopProductCard(props) {
                                 onSubmit={handleSubmit}>
                                 <div>
                                     <TextField
+                                        label="ID"
+                                        name="id"
+                                        value={props.id}
+                                        helperText={id}
+                                        onChange={handleInputChange}
+                                    />
+                                    <TextField
                                         label="Jewellery Type"
                                         name="jewelleryType"
                                         value={props.jewelleryType}
+                                        helperText={props.JewelleryType}
                                         onChange={handleInputChange}
                                     />
 
@@ -143,12 +151,31 @@ export default function ShopProductCard(props) {
                                         label="Item ID"
                                         name="itemId"
                                         value={props.itemId}
+                                        helperText={props.ItemId}
+                                        onChange={handleInputChange}
+                                    />
+
+                                    <TextField
+                                        label="Price"
+                                        name="mrp"
+                                        value={props.mrp}
+                                        helperText={props.Mrp}
                                         onChange={handleInputChange}
                                     />
                                 </div>
                             </Box>
                         </Typography>
                         <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
+                            <Button
+                                variant="contained"
+                                component="label"
+                                sx={{
+                                    marginRight: 1
+                                }}
+                            >
+                                Upload Image
+                                <input type="file" hidden />
+                            </Button>
                             <Button variant="contained" sx={{backgroundColor: "#2196f3"}} onClick={handleSubmit}>
                                 Edit Product
                             </Button>

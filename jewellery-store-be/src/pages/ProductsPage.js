@@ -12,8 +12,8 @@ const boxStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '54rem',
+    transform: 'translate(-50%, -39%)',
+    width: '37rem',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -62,13 +62,15 @@ export default function ProductsPage() {
         id: '',
         jewelleryType: '',
         itemId: '',
-        imgPath: ''
+        imgPath: '',
+        mrp: ''
     });
     const initFormData = {
         id: '',
         jewelleryType: '',
         itemId: '',
-        imgPath: ''
+        imgPath: '',
+        mrp: ''
     }
 
     const [itemData, setItemData] = useState({
@@ -146,6 +148,7 @@ export default function ProductsPage() {
         }))
     }, [formData.id])
 
+    console.log(formData)
     const resetFormData = () => {
         setFormData(initFormData);
     }
@@ -256,10 +259,29 @@ export default function ProductsPage() {
                                             value={formData.itemId}
                                             onChange={handleInputChange}
                                         />
+
+                                        <TextField
+                                            label="Price"
+                                            name="mrp"
+                                            value={formData.mrp}
+                                            onChange={handleInputChange}
+                                        />
+
+
                                     </div>
                                 </Box>
                             </Typography>
                             <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
+                                <Button
+                                    variant="contained"
+                                    component="label"
+                                    sx={{
+                                        marginRight: 1
+                                    }}
+                                >
+                                    Upload Image
+                                    <input type="file" hidden />
+                                </Button>
                                 <Button variant="contained" sx={{backgroundColor: "#2196f3"}} onClick={handleSubmit}>
                                     Add Product
                                 </Button>
@@ -271,6 +293,14 @@ export default function ProductsPage() {
                     open={open2}
                     onClose={handleClose2}
                     closeAfterTransition
+                    sx={{
+                        position:'absolute',
+                        top:'10%',
+                        left:'10%',
+                        overflow:'scroll',
+                        height:'100%',
+                        display:'block'
+                    }}
                     slots={{backdrop: Backdrop}}
                     slotProps={{
                         backdrop: {

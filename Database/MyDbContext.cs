@@ -544,6 +544,9 @@ public partial class MyDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("Item_ID");
+            entity.Property(e => e.Mrp)
+                .HasPrecision(10, 2)
+                .HasColumnName("MRP");
             entity.Property(e => e.JewelleryType)
                 .IsRequired()
                 .HasMaxLength(50)

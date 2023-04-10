@@ -13,6 +13,8 @@ public partial class JewelTypeMst
 
     public string ImgPath { get; set; }
 
+    public decimal Mrp { get; set; }
+
     public virtual ItemMst Item { get; set; }
 
     public virtual ICollection<CartList> Carts { get; } = new List<CartList>();
