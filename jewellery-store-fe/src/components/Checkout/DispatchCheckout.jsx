@@ -59,8 +59,8 @@ const DispatchCheckout = ({
             })
             .then(res => res.status)
             .then(res => setVerification(res));
-        // resetCart();
-        // resetUserData();
+        resetCart();
+        resetUserData();
     }, []);
     useEffect(async () => {
         if (verification == 200) {
