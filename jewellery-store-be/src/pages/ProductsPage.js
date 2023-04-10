@@ -1,6 +1,18 @@
 import {useEffect, useState} from 'react';
 // @mui
-import {Backdrop, Box, Button, Container, Fade, Modal, Snackbar, Stack, TextField, Typography} from '@mui/material';
+import {
+    Backdrop,
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    Fade,
+    Modal,
+    Snackbar,
+    Stack,
+    TextField,
+    Typography
+} from '@mui/material';
 // components
 import {ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar} from '../sections/@dashboard/products';
 
@@ -489,7 +501,12 @@ export default function ProductsPage() {
                 </Stack>
                 {items != null ? (
                     <ProductList products={items}/>
-                ) : ("loading")}
+                ) : (
+                    <Box display='flex' flexDirection='column' alignItems='center' mt={10}>
+                        <CircularProgress />
+                        <Typography variant='overline'>Loading</Typography>
+                    </Box>
+                )}
             </Container>
         </>
     );

@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   );
+    console.log(cart)
 
   //cart methods
 

@@ -225,8 +225,6 @@ CREATE TABLE `CreditCard`
 DROP TABLE IF EXISTS `Income`;
 CREATE TABLE `Income`
 (
-    `Customer_Name` varchar(50) NOT NULL PRIMARY KEY,
-    `Customer_Card` varchar(16) NOT NULL,
-    `Amount`        varchar(50) NOT NULL,
-    FOREIGN KEY (Customer_Card) REFERENCES CreditCard (Card_Number)
+    `Order_Id` varchar(50) NOT NULL PRIMARY KEY,
+    `Amount`        varchar(50) NOT NULL
 );

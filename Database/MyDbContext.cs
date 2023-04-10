@@ -160,7 +160,7 @@ public partial class MyDbContext : DbContext
         {
             entity.HasKey(e => e.CardNumber).HasName("PRIMARY");
 
-            entity.ToTable("CreditCard");
+            entity.ToTable("creditcard");
 
             entity.Property(e => e.CardNumber)
                 .HasMaxLength(16)
@@ -338,27 +338,16 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Income>(entity =>
         {
-            entity.HasKey(e => e.CustomerName).HasName("PRIMARY");
+            entity.HasKey(e => e.OrderId).HasName("PRIMARY");
 
-            entity.ToTable("Income");
+            entity.ToTable("income");
 
-            entity.HasIndex(e => e.CustomerCard, "Customer_Card");
-
-            entity.Property(e => e.CustomerName)
+            entity.Property(e => e.OrderId)
                 .HasMaxLength(50)
-                .HasColumnName("Customer_Name");
+                .HasColumnName("Order_Id");
             entity.Property(e => e.Amount)
                 .IsRequired()
                 .HasMaxLength(50);
-            entity.Property(e => e.CustomerCard)
-                .IsRequired()
-                .HasMaxLength(16)
-                .HasColumnName("Customer_Card");
-
-            entity.HasOne(d => d.CustomerCardNavigation).WithMany(p => p.Incomes)
-                .HasForeignKey(d => d.CustomerCard)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("income_ibfk_1");
         });
 
         modelBuilder.Entity<Inquiry>(entity =>

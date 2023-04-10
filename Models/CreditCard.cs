@@ -12,6 +12,4 @@ public partial class CreditCard
     public string CardCvv { get; set; }
 
     public string CardExpiration { get; set; }
-
-    public virtual ICollection<Income> Incomes { get; } = new List<Income>();
 }

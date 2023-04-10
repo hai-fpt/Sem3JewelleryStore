@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
+import {useEffect} from "react";
 
 const Success = ({ orderId }) => {
   return (
