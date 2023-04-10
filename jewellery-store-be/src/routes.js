@@ -7,6 +7,7 @@ import ComponentPage from './pages/ComponentPage';
 import LoginPage from './pages/LoginPage';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
+import IncomePage from "./pages/IncomePage";
 
 // ----------------------------------------------------------------------
 
@@ -20,6 +21,7 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'components', element: <ComponentPage /> },
+        { path: 'income', element: <IncomePage />}
       ],
     },
     {
