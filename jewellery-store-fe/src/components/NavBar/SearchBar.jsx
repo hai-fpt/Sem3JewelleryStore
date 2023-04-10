@@ -109,7 +109,7 @@ const SearchBar = () => {
     return debounce((value) =>
         fetch("https://localhost:7211/search?query=" + value )
             .then(res => res.json())
-            .then(res => setResult(res.$values))
+            .then(res => setResult(res))
         , 500);
   }, []);
   return (
@@ -130,15 +130,15 @@ const SearchBar = () => {
                     <CardMedia
                         component='img'
                         sx={{width: 70}}
-                        image={imgPath + result.id + '.jpg'}
+                        image={imgPath + result.Id + '.jpg'}
                         alt="alt"
-                        onClick={e => handleNavigation(result.id)}
+                        onClick={e => handleNavigation(result.Id)}
                     />
                     <Button size='large' sx={{color: "white", "&:hover": {backgroundColor: "rgb(203,203,124)"}}}
-                            onClick={e => handleNavigation(result.id)}
+                            onClick={e => handleNavigation(result.Id)}
                     >
                       <Typography variant='body2' color='text.secondary' noWrap>
-                        {result.jewelleryType} {result.id}
+                        {result.JewelleryType} {result.Id}
                       </Typography>
                     </Button>
                   </CardActions>

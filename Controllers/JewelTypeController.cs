@@ -115,25 +115,7 @@ namespace JewelleryStore.Controllers
         [HttpGet("/search")]
         public async Task<IActionResult> SearchItem(string query, string filter)
         {
-            //var jewelType = await _context.JewelTypeMsts
-            //    .Include(j => j.Item)
-            //        .ThenInclude(i => i.Brand)
-            //    .Include(j => j.Item)
-            //        .ThenInclude(i => i.Cat)
-            //    .Include(j => j.Item)
-            //        .ThenInclude(i => i.Certify)
-            //    .Include(j => j.Item)
-            //        .ThenInclude(i => i.GoldType)
-            //    .Include(j => j.Item)
-            //        .ThenInclude(i => i.Prod)
-            //    .Where(j => j.Id.Contains(query) ||
-            //                j.Item.StyleCode.Contains(query) ||
-            //                j.Item.Brand.BrandId.Contains(query) ||
-            //                j.Item.Cat.CatName.Contains(query) ||
-            //                j.Item.Certify.CertifyType.Contains(query) ||
-            //                j.Item.GoldType.GoldCrt.Contains(query) ||
-            //                j.Item.Prod.ProdType.Contains(query))
-            //    .ToListAsync();
+            
 
             IQueryable<JewelTypeMst> queryable = _context.JewelTypeMsts
                 .Include(j => j.Item)
@@ -176,8 +158,16 @@ namespace JewelleryStore.Controllers
                             j.Item.GoldType.GoldTypeId.Contains(query) || j.Item.GoldType.GoldCrt.Contains(query))
                 .ToListAsync();
 
+            var jsonSetings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
 
-            return Ok(jewelType);
+            var json = JsonConvert.SerializeObject(jewelType, Formatting.None, jsonSetings);
+
+            return Content(json, "application/json");
+
+            
         }
 
 
