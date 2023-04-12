@@ -11,7 +11,7 @@ const CartWidget = () => {
   const { amountOfItemsInCart } = useContext(CartContext);
 
   return amountOfItemsInCart() > 0 ? (
-    <Tooltip title='Ver carrito'>
+    <Tooltip title='See cart'>
       <IconButton
         sx={{ mx: 1 }}
         aria-label='carrito'

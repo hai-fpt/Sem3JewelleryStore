@@ -1,2 +1,9 @@
-JT01,necklace,S01,src/assets/img/desktops-1.jpg
-JT02,ring,S01,src/assets/img/JT02
+JT01,necklace,S01,src/assets/img/JT01,100.00
+JT02,necklace,S01,src/assets/img/JT02,200.00
+JT03,necklace,S01,src/assets/img/JT03,300.00
+JT04,ring,S02,src/assets/img/JT04,400.00
+JT05,ring,S02,src/assets/img/JT05,450.00
+JT06,ring,S02,src/assets/img/JT06,500.00
+JT07,earring,S03,src/assets/img/JT07,100.00
+JT08,earring,S03,src/assets/img/JT08,150.00
+JT09,earring,S03,src/assets/img/JT09,200.00

@@ -14,15 +14,18 @@ var policyName = "_myAllowSpecificOrigins";
 // Add services to the container.
 
 builder.Services.AddControllers();
+// Prevent JSON serialization omit
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
 }
 );
+// Prevent error 500 when missing params in request body
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+// CORS for frontend
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: policyName,
@@ -42,11 +45,13 @@ builder.Services.AddCors(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Connect to DB
 var connectionString = builder.Configuration.GetConnectionString("MySqlConnection");
 builder.Services.AddDbContext<MyDbContext>(
     dbContextOptions =>
     dbContextOptions.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );
+// Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
